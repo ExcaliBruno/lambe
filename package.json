@@ -10,9 +10,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "@kolking/react-native-avatar": "^2.1.5",
+    "@react-native/new-app-screen": "0.80.0",
+    "@react-navigation/native": "^7.1.13",
+    "axios": "^1.10.0",
     "react": "19.1.0",
     "react-native": "0.80.0",
-    "@react-native/new-app-screen": "0.80.0"
+    "react-native-image-picker": "^8.2.1",
+    "react-native-vector-icons": "^10.2.0",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -36,5 +44,10 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }
