@@ -9,7 +9,7 @@ import { Avatar } from "@kolking/react-native-avatar";
 
 class Profile extends Component {
     logout = () => {
-
+        this.props.onLogout();
     }
 
     render() {

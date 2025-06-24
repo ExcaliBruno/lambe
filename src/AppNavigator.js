@@ -16,10 +16,12 @@ export default function AppNavigator() {
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 {!isLoggedIn ? (
                     <Stack.Screen name="Login" >
-                        {props => <Login {...props} onLogin={() => setIsLoggedIn(true)} />}
+                        {props => <Login {...props} onLogin={() => setIsLoggedIn(!isLoggedIn)} />}
                     </Stack.Screen>
                 ) : (
-                    <Stack.Screen name="AppTabs" component={Navigator} />
+                    <Stack.Screen name="AppTabs" >
+                        {props => <Navigator {...props} onLogout={() => setIsLoggedIn(false)} />}
+                    </Stack.Screen>
                 )}
             </Stack.Navigator>
         </NavigationContainer>

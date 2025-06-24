@@ -9,7 +9,7 @@ import Profile from "./screens/Profile";
 
 const Tab = createBottomTabNavigator()
 
-export default function Navigator(){
+export default function Navigator({ onLogout }){
     return (
             <Tab.Navigator 
                 screenOptions={({route})=> ({
@@ -43,8 +43,9 @@ export default function Navigator(){
             >
                 <Tab.Screen name = "Home" component={Feed}/>
                 <Tab.Screen name = "AddPhoto" component={AddPhoto}/>
-                <Tab.Screen name = "Profile" component={Profile}/>
-
+                <Tab.Screen name = "Profile">
+                    {props => <Profile {...props} onLogout={onLogout} />}
+                </Tab.Screen>
             </Tab.Navigator>
     )
 }
