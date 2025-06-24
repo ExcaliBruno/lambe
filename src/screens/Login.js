@@ -9,12 +9,12 @@ import {
 
 class Login extends Component {
     state ={
-        emai: '',
+        email: '',
         password: ''
     }
 
     login = () => {
-         this.props.onLogin() // Isso troca o estado e redireciona para AppTabs
+         this.props.onLogin() 
     }
 
     render() {
@@ -22,7 +22,7 @@ class Login extends Component {
             <View style={styles.container}>
                 <TextInput placeholder='Email' style={styles.input}
                     autoFocus= {true} keyboardType='email-address'
-                    value ={this.state.emai} onChangeText={email => this.setState({ email })} 
+                    value ={this.state.email} onChangeText={email => this.setState({ email })} 
                 />
                 <TextInput placeholder='Senha' style={styles.input}
                     secureTextEntry={true} value={this.state.password}
@@ -33,7 +33,7 @@ class Login extends Component {
                         Login
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => {}} style={styles.button}>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')} style={styles.button}>
                     <Text style={styles.textButton}>
                         Criar nova conta...
                     </Text>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     button: {
-        margintop: 30,
+        marginTop: 20,
         padding: 10,
         backgroundColor: '#4286f4'
     },
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     input: {
-        marginTop: 20,
+        marginTop: 30,
         width: '90%',
         backgroundColor: '#eee',
         height: 40,
