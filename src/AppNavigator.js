@@ -18,7 +18,7 @@ export default function AppNavigator() {
                 {!isLoggedIn ? (
                     <>
                         <Stack.Screen name="Login" >
-                            {props => <Login {...props} onLogin={() => setIsLoggedIn(!isLoggedIn)} />}
+                            {props => <Login {...props} onLoginSuccess={() => setIsLoggedIn(!isLoggedIn)} />}
                         </Stack.Screen>
                         <Stack.Screen name="Register" component={Register} />
                     </>

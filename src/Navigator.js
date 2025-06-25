@@ -44,7 +44,7 @@ export default function Navigator({ onLogout }){
                 <Tab.Screen name = "Home" component={Feed}/>
                 <Tab.Screen name = "AddPhoto" component={AddPhoto}/>
                 <Tab.Screen name = "Profile">
-                    {props => <Profile {...props} onLogout={onLogout} />}
+                    {props => <Profile {...props} onLogoutSuccess={onLogout} />}
                 </Tab.Screen>
             </Tab.Navigator>
     )
