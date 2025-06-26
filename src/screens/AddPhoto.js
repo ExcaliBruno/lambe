@@ -15,6 +15,8 @@ import {
 } from 'react-native'
 import { launchImageLibrary } from 'react-native-image-picker'
 
+const noUser = 'Voce precisa estar logado para adicionar imagens'
+
 class AddPhoto extends Component {
     state = {
         image: null,
@@ -22,36 +24,34 @@ class AddPhoto extends Component {
     }
 
     pickImage = () => {
-        const options = {
-            mediaType: 'photo',
-            includeBase64: true,
-            maxWidth: 800,
-            maxHeight: 600,
-        }
-
-        launchImageLibrary(options, response => {
-            if (response.didCancel) {
-                return
-            }
-
-            if (response.errorCode) {
-                Alert.alert('Erro ao selecionar imagem', response.errorMessage)
-                return
-            }
-
-            const asset = response.assets && response.assets[0]
-            if (asset) {
-                this.setState({
-                    image: {
-                        uri: asset.uri,
-                        base64: asset.base64
-                    }
-                })
-            }
-        })
+    if (!this.props.name) {
+        Alert.alert('Falha!', noUser)
+        return
     }
 
+    const options = {
+        mediaType: 'photo',
+        includeBase64: true,
+        maxHeight: 600,
+        maxWidth: 800,
+    }
+
+    launchImageLibrary(options, res => {
+        if (res.didCancel) return
+        if (res.errorCode) {
+            Alert.alert('Erro ao carregar imagem', res.errorMessage)
+        } else {
+            const image = res.assets[0]
+            this.setState({ image: { uri: image.uri, base64: image.base64 } })
+        }
+    })
+}
+
     save = async () => {
+        if(!this.props.name){
+            Alert.alert('Falha', noUser)
+            return
+        }
         this.props.onAddPost({
             id: Math.random(),
             nickname: this.props.name,
@@ -80,6 +80,7 @@ class AddPhoto extends Component {
                 </TouchableOpacity>
                 <TextInput placeholder = 'Algum comentario'
                     style = {styles.input} value ={this.state.comment}
+                    editable={this.props.name != null}
                     onChangeText={comment => this.setState({ comment })}/>
                 <TouchableOpacity onPress={this.save} style={styles.buttom}>
                     <Text style={styles.buttomText}>
